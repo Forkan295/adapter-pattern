@@ -34,8 +34,7 @@ Route::get('/', function () {
 //    $payment = new WireAdapter($wire);
 //    old approach
 
-    $payment = resolve(WireAdapter::class);
-    $payment->setAmount(600);
+    $payment = resolve(WireAdapter::class)->setAmount(600);
     return [$payment->pay(), $payment->charge()];
 
 //    return view('welcome');
