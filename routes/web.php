@@ -1,9 +1,13 @@
 <?php
 
+use App\Payment\Paypal;
 use App\Payment\Stripe;
 use App\Payment\StripeAdapter;
 use App\Payment\Wire;
 use App\Payment\WireAdapter;
+use App\Service\CallStatic\CallStatic;
+use App\Service\Decouple\BaseClass;
+use App\Service\Decouple\Child1;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-//    $payment =  new \App\Payment\Paypal(900);
+//    $payment = resolve(Paypal::class)->setAmount(100);
 //    $stripe  = new Stripe(900);
 //    $payment = new StripeAdapter($stripe);
 
@@ -38,4 +42,22 @@ Route::get('/', function () {
     return [$payment->pay(), $payment->charge()];
 
 //    return view('welcome');
+});
+
+Route::get('/errors',function (){
+   throw new InvalidArgumentException('nOT FoUND');
+});
+
+Route::get('/dt',function (){
+   $dt =  new DateTime('',new DateTimeZone('Asia/Dhaka'));
+   dd($dt);
+});
+
+Route::get('/dcouple',function (){
+   $child = new Child1();
+   return $child->printClass(new BaseClass());
+});
+Route::get('/call-static',function (){
+   $cs = CallStatic::posts();
+   echo $cs;
 });

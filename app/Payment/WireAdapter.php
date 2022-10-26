@@ -8,7 +8,7 @@ class WireAdapter implements PaypalInterface
     {
     }
 
-    public function setAmount(int $amount)
+    public function setAmount(int $amount): static
     {
         $this->wire->setAmount($amount);
         return $this;

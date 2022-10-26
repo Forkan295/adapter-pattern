@@ -5,12 +5,11 @@ namespace App\Payment;
 class Payment implements PaymentInterface
 {
     public int $amount;
-    /**
-     * @param int $amount
-     */
-    public function setAmount(int $amount): void
+
+    public function setAmount(int $amount): static
     {
         $this->amount = $amount;
+        return $this;
     }
 
     public function pay(): string

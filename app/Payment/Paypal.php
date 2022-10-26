@@ -4,10 +4,6 @@ namespace App\Payment;
 
 class Paypal extends Payment implements PaypalInterface
 {
-    public function __construct($amount)
-    {
-        parent::__construct($amount);
-    }
 
     public function charge(): string
     {
